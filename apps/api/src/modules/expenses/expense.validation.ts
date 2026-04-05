@@ -6,7 +6,8 @@ const createExpenseBody = z.object({
   amountCents: z.number().int().positive(),
   currency: z.string().length(3).default("USD"),
   category: z.string().min(1).max(40),
-  description: z.string().max(500).optional()
+  description: z.string().max(500).optional(),
+  reportId: z.string().length(24).nullable().optional()
 });
 
 const updateExpenseBody = createExpenseBody.partial();
