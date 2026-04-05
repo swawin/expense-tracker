@@ -24,6 +24,10 @@ export function createReport(payload: Pick<Report, "title" | "description" | "cu
   return apiFetch<Report>("/reports", { method: "POST", body: JSON.stringify(payload) });
 }
 
+export function updateReport(reportId: string, payload: Partial<Pick<Report, "title" | "description" | "status">>) {
+  return apiFetch<Report>(`/reports/${reportId}`, { method: "PATCH", body: JSON.stringify(payload) });
+}
+
 export function addExpensesToReport(reportId: string, expenseIds: string[]) {
   return apiFetch<Report>(`/reports/${reportId}/expenses`, { method: "POST", body: JSON.stringify({ expenseIds }) });
 }

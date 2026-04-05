@@ -26,6 +26,10 @@ export async function updateReport(reportId: string, payload: Record<string, unk
   if (report.status === "submitted") throw new ApiError(StatusCodes.CONFLICT, "Submitted reports are read-only");
 
   Object.assign(report, payload);
+  if (payload.status === "draft") {
+    report.status = "draft";
+    report.submittedAt = null;
+  }
   await report.save();
   return report;
 }

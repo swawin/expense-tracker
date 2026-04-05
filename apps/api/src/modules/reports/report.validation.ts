@@ -8,7 +8,8 @@ const createReportBody = z.object({
 
 const updateReportBody = z.object({
   title: z.string().min(1).max(140).optional(),
-  description: z.string().max(500).optional()
+  description: z.string().max(500).optional(),
+  status: z.literal("draft").optional()
 });
 
 export const createReportSchema = z.object({ body: createReportBody, params: z.object({}), query: z.object({}) });
